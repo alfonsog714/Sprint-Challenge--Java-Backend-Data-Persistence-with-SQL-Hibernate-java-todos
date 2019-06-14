@@ -44,7 +44,7 @@ public class ToDoServiceImpl implements ToDoService
         ToDo newTodo = new ToDo();
         newTodo.setCompleted(todo.getCompleted());
         newTodo.setDescription(todo.getDescription());
-        newTodo.setUserid(todo.getUserid());
+        newTodo.setUsertodo(todo.getUsertodo());
 
         return trepos.save(newTodo);
     }

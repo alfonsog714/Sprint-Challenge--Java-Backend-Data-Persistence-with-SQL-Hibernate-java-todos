@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
+@Entity
+@Table(name = "todos")
 public class ToDo extends Auditable
 {
     @Id
@@ -19,8 +21,7 @@ public class ToDo extends Auditable
     @ManyToOne
     @JoinColumn(name = "userid")
     @JsonIgnoreProperties("todo")
-    @Column(nullable = false)
-    private User userid;
+    private User usertodo;
 
     public ToDo()
     {
@@ -31,11 +32,11 @@ public class ToDo extends Auditable
         this.description = description;
     }
 
-    public ToDo(String description, String completed, User userid)
+    public ToDo(String description, String completed, User usertodo)
     {
         this.description = description;
         this.completed = completed;
-        this.userid = userid;
+        this.usertodo = usertodo;
     }
 
     public long getTodoid()
@@ -68,13 +69,13 @@ public class ToDo extends Auditable
         this.completed = completed;
     }
 
-    public User getUserid()
+    public User getUsertodo()
     {
-        return userid;
+        return usertodo;
     }
 
-    public void setUserid(User userid)
+    public void setUsertodo(User usertodo)
     {
-        this.userid = userid;
+        this.usertodo = usertodo;
     }
 }

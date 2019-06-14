@@ -1,3 +1,17 @@
+package local.alfonso.todos;
+
+import local.alfonso.todos.models.Role;
+import local.alfonso.todos.models.ToDo;
+import local.alfonso.todos.models.User;
+import local.alfonso.todos.models.UserRoles;
+import local.alfonso.todos.repository.RoleRepository;
+import local.alfonso.todos.repository.UserRepository;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+
 @Transactional
 @Component
 public class SeedData implements CommandLineRunner

@@ -1,7 +1,8 @@
 package local.alfonso.todos.controllers;
 
-import com.lambdaschool.starthere.models.User;
-import com.lambdaschool.starthere.services.UserService;
+
+import local.alfonso.todos.models.User;
+import local.alfonso.todos.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

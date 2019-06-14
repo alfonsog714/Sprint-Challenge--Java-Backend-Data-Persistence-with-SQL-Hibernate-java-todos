@@ -21,4 +21,60 @@ public class ToDo extends Auditable
     @JsonIgnoreProperties("todo")
     @Column(nullable = false)
     private User userid;
+
+    public ToDo()
+    {
+    }
+
+    public ToDo(String description)
+    {
+        this.description = description;
+    }
+
+    public ToDo(String description, boolean completed, User userid)
+    {
+        this.description = description;
+        this.completed = completed;
+        this.userid = userid;
+    }
+
+    public long getTodoid()
+    {
+        return todoid;
+    }
+
+    public void setTodoid(long todoid)
+    {
+        this.todoid = todoid;
+    }
+
+    public String getDescription()
+    {
+        return description;
+    }
+
+    public void setDescription(String description)
+    {
+        this.description = description;
+    }
+
+    public boolean isCompleted()
+    {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed)
+    {
+        this.completed = completed;
+    }
+
+    public User getUserid()
+    {
+        return userid;
+    }
+
+    public void setUserid(User userid)
+    {
+        this.userid = userid;
+    }
 }

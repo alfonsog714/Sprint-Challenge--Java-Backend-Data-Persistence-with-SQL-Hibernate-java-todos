@@ -1,11 +1,8 @@
 package local.alfonso.todos.services;
 
 import local.alfonso.todos.models.ToDo;
-import local.alfonso.todos.models.User;
 import local.alfonso.todos.repository.ToDoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -45,7 +42,7 @@ public class ToDoServiceImpl implements ToDoService
     public ToDo save(ToDo todo)
     {
         ToDo newTodo = new ToDo();
-        newTodo.setCompleted(false);
+        newTodo.setCompleted(todo.getCompleted());
         newTodo.setDescription(todo.getDescription());
         newTodo.setUserid(todo.getUserid());
 
@@ -62,11 +59,11 @@ public class ToDoServiceImpl implements ToDoService
             currentTodo.setDescription(todo.getDescription());
         }
 
-        if (currentTodo.isCompleted() != todo.isCompleted())
+        if (todo.getCompleted() != null)
         {
-            currentTodo.setCompleted(todo.isCompleted());
+            currentTodo.setCompleted(todo.getCompleted());
         }
-        
+
         return trepos.save(currentTodo);
     }
 }

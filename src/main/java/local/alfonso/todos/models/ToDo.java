@@ -14,7 +14,7 @@ public class ToDo extends Auditable
     @Column(nullable = false)
     private String description;
 
-    private boolean completed;
+    private String completed;
 
     @ManyToOne
     @JoinColumn(name = "userid")
@@ -31,7 +31,7 @@ public class ToDo extends Auditable
         this.description = description;
     }
 
-    public ToDo(String description, boolean completed, User userid)
+    public ToDo(String description, String completed, User userid)
     {
         this.description = description;
         this.completed = completed;
@@ -58,12 +58,12 @@ public class ToDo extends Auditable
         this.description = description;
     }
 
-    public boolean isCompleted()
+    public String getCompleted()
     {
         return completed;
     }
 
-    public void setCompleted(boolean completed)
+    public void setCompleted(String completed)
     {
         this.completed = completed;
     }

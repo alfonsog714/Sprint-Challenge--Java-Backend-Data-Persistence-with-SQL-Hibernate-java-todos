@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -31,6 +32,13 @@ public class UserController
     {
         List<User> myUsers = userService.findAll();
         return new ResponseEntity<>(myUsers, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/mine", produces = {"application/json"})
+    public ResponseEntity<?> getMine(HttpServletRequest request, Authentication authentication)
+    {
+
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
 

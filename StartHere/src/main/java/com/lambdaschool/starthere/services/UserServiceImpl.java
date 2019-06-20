@@ -131,4 +131,16 @@ public class UserServiceImpl implements UserDetailsService, UserService
         }
 
     }
+
+    @Override
+    public User findByUsername(String name) throws EntityNotFoundException
+    {
+        User user = userrepos.findByUsername(name);
+
+        if (user == null)
+        {
+            throw new EntityNotFoundException("User " + name + " not found!");
+        }
+        return user;
+    }
 }

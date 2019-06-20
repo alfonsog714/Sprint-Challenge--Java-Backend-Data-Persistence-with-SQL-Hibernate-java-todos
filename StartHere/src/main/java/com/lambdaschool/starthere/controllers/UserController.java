@@ -1,5 +1,6 @@
 package com.lambdaschool.starthere.controllers;
 
+import com.lambdaschool.starthere.models.ToDo;
 import com.lambdaschool.starthere.models.User;
 import com.lambdaschool.starthere.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +38,8 @@ public class UserController
     @GetMapping(value = "/mine", produces = {"application/json"})
     public ResponseEntity<?> getMine(HttpServletRequest request, Authentication authentication)
     {
-
-        return new ResponseEntity<>(null, HttpStatus.OK);
+        User u = userService.findByUsername(authentication.getName());
+        return new ResponseEntity<>(u, HttpStatus.OK);
     }
 
 
@@ -60,7 +61,7 @@ public class UserController
 
 
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    @PostMapping(value = "/user", consumes = {"application/json"}, produces = {"application/json"})
+    @PostMapping(value = "/users", consumes = {"application/json"}, produces = {"application/json"})
     public ResponseEntity<?> addNewUser(HttpServletRequest request, @Valid @RequestBody User newuser) throws URISyntaxException
     {
         newuser =  userService.save(newuser);
@@ -92,5 +93,17 @@ public class UserController
     {
         userService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/todo/{userid}", consumes = {"application/json"}, produces = {"application/json"})
+    public ResponseEntity<?> addNewTodo(HttpServletRequest request, @PathVariable long userid, @Valid @RequestBody ToDo todo)
+    {
+        User user = userService.findUserById(userid);
+
+        ToDo newTodo = new ToDo(todo.getDescription(), todo.isCompleted(), user);
+
+        user.getTodos().add(newTodo);
+
+        return new ResponseEntity<>(null, HttpStatus.CREATED);
     }
 }
